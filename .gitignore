@@ -1,0 +1,29 @@
+# Android Studio
+
+# Build files
+build/
+.gradle/
+.cxx/
+.externalNativeBuild/
+
+# Local configuration files
+local.properties
+.idea/
+*.iml
+
+# Keystore files
+*.jks
+*.keystore
+
+# APK files
+*.apk
+*.ap_
+*.aab
+
+# Other
+.DS_Store
+captures/
+*.hprof
+*.so
+*.swp
+*.swo

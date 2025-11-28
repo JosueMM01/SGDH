@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="300dp"
     android:layout_height="match_parent"
-    android:background="@color/sidebar_bg">
+    android:background="@color/sidebar_bg"
+    android:clickable="true"
+    android:focusable="true">
 
     <LinearLayout
         android:id="@+id/sidebarHeader"
@@ -18,11 +21,11 @@
             android:layout_width="140dp"
             android:layout_height="60dp"
             android:src="@drawable/logo_sgdh"
-            android:scaleType="fitStart"
+            android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            app:tint="@color/brand_primary"/>
 
-
+            android:background="@drawable/bg_sidebar_logo"
+            android:padding="8dp"/>
     </LinearLayout>
 
     <View
@@ -35,6 +38,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:fillViewport="true"
         app:layout_constraintTop_toBottomOf="@id/dividerTop"
         app:layout_constraintBottom_toTopOf="@id/dividerBottom">
 
@@ -42,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingVertical="16dp">
 
             <TextView
                 android:id="@+id/menu_inicio"
@@ -81,54 +85,51 @@
         android:id="@+id/sidebarFooter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:background="#151823"
+        android:padding="20dp"
+        android:background="@color/sidebar_bg"
+        app:layout_constraintBottom_toBottomOf="parent"> <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnLogout"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <ImageView
-            android:id="@+id/imgProfile"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@android:drawable/sym_def_app_icon"
-            android:padding="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="12dp"
-            app:layout_constraintStart_toEndOf="@id/imgProfile"
-            app:layout_constraintEnd_toStartOf="@id/btnLogout"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"> <TextView
+        <TextView
             android:id="@+id/tvUserName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Cargando..."
-            android:textColor="@color/white"
+            android:textColor="@color/sidebar_text"
             android:textStyle="bold"
-            android:textSize="14sp"/>
-
-            <TextView
-                android:id="@+id/tvUserEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="..."
-                android:textColor="@color/sidebar_text_muted"
-                android:textSize="12sp"/>
-        </LinearLayout>
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:ellipsize="end"/> <TextView
+        android:id="@+id/tvUserEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="..."
+        android:textColor="@color/sidebar_text_muted"
+        android:textSize="13sp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_marginTop="2dp"/> </LinearLayout>
 
         <ImageView
             android:id="@+id/btnLogout"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:src="@android:drawable/ic_lock_power_off"
             app:tint="@color/sidebar_text_muted"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/> </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

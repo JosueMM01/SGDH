@@ -1,26 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="background_light">#f8fafc</color>
+    <color name="status_warning">#f59e0b</color>
+    <color name="status_success">#00cc00</color>
     <color name="brand_primary">#009900</color>
     <color name="brand_dark">#006600</color>
     <color name="accent_blue">#0033cc</color>
-
-    <color name="text_primary">#1F2937</color>
-    <color name="text_secondary">#6B7280</color>
-    <color name="border_default">#E5E7EB</color>
     <color name="white">#FFFFFF</color>
-    <color name="background_light">#f8fafc</color>
-
-    <color name="sidebar_bg">#222738</color>
-    <color name="sidebar_text">#FFFFFF</color>
-    <color name="sidebar_text_muted">#94a3b8</color>
-    <color name="sidebar_divider">#2A2F42</color>
-    <color name="status_warning">#f59e0b</color>
-    <color name="status_success">#00cc00</color>
-
-    <color name="background_screen">#f8fafc</color>
-    <color name="surface_card">#FFFFFF</color>
+    <color name="background_screen">#F8FAFC</color> <color name="surface_card">#FFFFFF</color>       <color name="text_primary">#1F2937</color>       <color name="text_secondary">#6B7280</color>
+    <color name="border_default">#E5E7EB</color>
+    <color name="sidebar_bg">#FFFFFF</color>           <color name="sidebar_text">#1F2937</color>         <color name="sidebar_text_muted">#6B7280</color>
+    <color name="sidebar_divider">#F3F4F6</color>
+    <color name="sidebar_logo_background">#00FFFFFF</color>
     <color name="input_stroke_focus">@color/accent_blue</color>
     <color name="input_cursor">@color/accent_blue</color>
-
+    <color name="text_welcome_title">@color/brand_primary</color>
 
 </resources>

@@ -47,7 +47,9 @@ dependencies {
 
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation("androidx.biometric:biometric:1.1.0")
-    //implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+
+    // Carga de imágenes con Coil
+    implementation("io.coil-kt:coil:2.5.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

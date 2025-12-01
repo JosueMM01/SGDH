@@ -11,8 +11,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.sgdh.R
 import com.example.sgdh.ui.login.LoginActivity
-import com.example.sgdh.ui.home.HomeFragment           // Importamos Home
-import com.example.sgdh.ui.solicitudes.SolicitudesFragment // Importamos Solicitudes
+import com.example.sgdh.ui.home.HomeFragment
+import com.example.sgdh.ui.solicitudes.SolicitudesFragment
 import com.google.android.material.appbar.MaterialToolbar
 
 class MainActivity : AppCompatActivity() {

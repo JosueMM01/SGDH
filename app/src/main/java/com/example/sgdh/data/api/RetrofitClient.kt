@@ -1,5 +1,6 @@
 package com.example.sgdh.data.api
 
+import android.content.Context
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -8,27 +9,46 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
 
-    //  Cambiar por la IP de tu servidor local
+    //  IP del tu servidor
     const val BASE_URL = "http://192.168.1.84/api/"
 
-    private val loggingInterceptor = HttpLoggingInterceptor().apply {
-        level = HttpLoggingInterceptor.Level.BODY
+    // Variable para guardar la instancia única
+    @Volatile
+    private var apiInstance: ApiService? = null
+
+    // Función para obtener la API. Requiere contexto para configurar la seguridad.
+    fun getApi(context: Context): ApiService {
+        return apiInstance ?: synchronized(this) {
+            val instance = buildRetrofit(context)
+            apiInstance = instance
+            instance
+        }
     }
 
-    private val client = OkHttpClient.Builder()
-        .addInterceptor(loggingInterceptor) // 1. Ver logs
-        .addInterceptor { chain ->          // 2. Forzar JSON
-            val request = chain.request().newBuilder()
-                .addHeader("Accept", "application/json")
-                .build()
-            chain.proceed(request)
+    private fun buildRetrofit(context: Context): ApiService {
+        // 1. Interceptor para ver los logs en la consola (Debug)
+        val loggingInterceptor = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
         }
-        .connectTimeout(30, TimeUnit.SECONDS)
-        .readTimeout(30, TimeUnit.SECONDS)
-        .build()
 
-    val api: ApiService by lazy {
-        Retrofit.Builder()
+        // 2. Interceptor de Seguridad (Manejo de Token vencido 401)
+        val authInterceptor = AuthInterceptor(context)
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .addInterceptor(authInterceptor) // <--- Conectamos al guardia aquí
+            .addInterceptor { chain ->
+                // 3. Forzar siempre el envío y recepción de JSON
+                val request = chain.request().newBuilder()
+                    .addHeader("Accept", "application/json")
+                    .build()
+                chain.proceed(request)
+            }
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .build()
+
+        return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())

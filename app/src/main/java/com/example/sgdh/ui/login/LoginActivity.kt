@@ -159,7 +159,7 @@ class LoginActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = RetrofitClient.api.login(LoginRequest(email, pass))
+                val response = RetrofitClient.getApi(this@LoginActivity).login(LoginRequest(email, pass))
 
                 withContext(Dispatchers.Main) {
                     // Restaurar botón
@@ -168,7 +168,7 @@ class LoginActivity : AppCompatActivity() {
 
                     if (response.isSuccessful && response.body() != null) {
                         val data = response.body()!!
-                        saveSessionAndNavigate(data.token, data.user.name, data.user.email)
+                        saveSessionAndNavigate(data.token, data.user.name, data.user.email, data.user.rol, data.user.areaId)
                     } else {
                         // Manejo de errores de negocio (401, 422)
                         // Aquí podrías parsear el JSON de error para ser más específico
@@ -194,12 +194,12 @@ class LoginActivity : AppCompatActivity() {
     private fun performGoogleLogin(googleToken: String) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = RetrofitClient.api.loginWithGoogle(GoogleLoginRequest(googleToken))
+                val response = RetrofitClient.getApi(this@LoginActivity).loginWithGoogle(GoogleLoginRequest(googleToken))
 
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful && response.body() != null) {
                         val data = response.body()!!
-                        saveSessionAndNavigate(data.token, data.user.name, data.user.email)
+                        saveSessionAndNavigate(data.token, data.user.name, data.user.email, data.user.rol, data.user.areaId)
                     } else {
                         showToast("Tu cuenta de Google no está registrada en el sistema.")
                     }
@@ -215,15 +215,17 @@ class LoginActivity : AppCompatActivity() {
     /**
      * Guarda el token en almacenamiento local seguro y navega al Dashboard.
      */
-    private fun saveSessionAndNavigate(token: String, name: String, email: String) {
+    // Fíjate que ahora en los paréntesis pedimos 'role' y 'areaId'
+    private fun saveSessionAndNavigate(token: String, name: String, email: String, role: String?, areaId: Int?) {
         getSharedPreferences("sgdh_prefs", Context.MODE_PRIVATE).edit().apply {
             putString("token", token)
             putString("user_name", name)
             putString("user_email", email)
+            putString("user_role", role ?: "")
+            putInt("user_area_id", areaId ?: -1)
             apply()
         }
 
-        // Único Toast de éxito permitido
         showToast("¡Bienvenido, $name!")
         irAlMenuPrincipal()
     }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "567852815358",
+    "project_id": "sgdh-movil",
+    "storage_bucket": "sgdh-movil.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:567852815358:android:fc165521b9c81f1d2ce6af",
+        "android_client_info": {
+          "package_name": "com.example.sgdh"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCY-LnqwV3vgCeX1eiWQkb4fl8F8rRSM34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

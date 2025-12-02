@@ -27,3 +27,6 @@ captures/
 *.so
 *.swp
 *.swo
+
+# Google Services
+google-services.json

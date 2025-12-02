@@ -93,12 +93,17 @@ class BitacorasFragment : Fragment() {
     }
 
     private fun cargarDatos() {
+        val prefs = requireActivity().getSharedPreferences("sgdh_prefs", android.content.Context.MODE_PRIVATE)
+        val userId = prefs.getInt("user_id", -1) // Obtenemos el ID del usuario actual
+
         CoroutineScope(Dispatchers.IO).launch {
             val db = AppDatabase.getDatabase(requireContext())
-            val lista = db.bitacoraDao().obtenerTodas()
+
+            // Usamos la nueva función filtrada
+            val lista = db.bitacoraDao().obtenerPorUsuario(userId)
+
             withContext(Dispatchers.Main) {
                 adapter.updateData(lista)
-                // Mostrar/Ocultar mensaje de lista vacía
                 binding.tvEmpty.visibility = if (lista.isEmpty()) View.VISIBLE else View.GONE
             }
         }
@@ -206,12 +211,22 @@ class BitacorasFragment : Fragment() {
         val fechaActual = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(Date())
         val db = AppDatabase.getDatabase(requireContext())
 
+        // Obtenemos el ID del usuario para marcar la bitácora
+        val prefs = requireActivity().getSharedPreferences("sgdh_prefs", android.content.Context.MODE_PRIVATE)
+        val userId = prefs.getInt("user_id", -1)
+
+        if (userId == -1) {
+            Toast.makeText(context, "Error de sesión", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         CoroutineScope(Dispatchers.IO).launch {
             if (bitacoraOriginal == null) {
-                // INSERTAR NUEVO
+                // INSERTAR NUEVO (Con usuarioId)
                 val nueva = BitacoraEntity(
                     titulo = titulo, descripcion = desc, fecha = fechaActual,
-                    fotoPath = currentPhotoPath
+                    fotoPath = currentPhotoPath,
+                    usuarioId = userId // <--- ASIGNAMOS DUEÑO
                 )
                 db.bitacoraDao().insertar(nueva)
             } else {
@@ -220,6 +235,7 @@ class BitacorasFragment : Fragment() {
                     titulo = titulo,
                     descripcion = desc,
                     fotoPath = currentPhotoPath ?: bitacoraOriginal.fotoPath
+                    // usuarioId ya viene en el original, no cambia
                 )
                 db.bitacoraDao().actualizar(editada)
             }

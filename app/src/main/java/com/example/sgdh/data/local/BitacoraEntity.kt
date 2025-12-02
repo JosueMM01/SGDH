@@ -9,5 +9,6 @@ data class BitacoraEntity(
     val titulo: String,
     val descripcion: String,
     val fecha: String,
-    val fotoPath: String? // Ruta local de la foto
+    val fotoPath: String?,
+    val usuarioId: Int
 )

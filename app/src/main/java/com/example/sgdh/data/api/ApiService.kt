@@ -1,6 +1,7 @@
 package com.example.sgdh.data.api
 
 import retrofit2.Response
+import retrofit2.http.*
 import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.GET
@@ -53,6 +54,19 @@ interface ApiService {
         @retrofit2.http.Path("id") id: Int,
         @Body body: UpdateEstadoRequest
     ): Response<Any>
+
+    // --- NOTIFICACIONES ---
+    @POST("user/fcm-token")
+    suspend fun updateFcmToken(
+        @Header("Authorization") token: String,
+        @Body body: FcmTokenRequest
+    ): Response<Any>
+
+    @DELETE("user/fcm-token")
+    suspend fun deleteFcmToken(
+        @Header("Authorization") token: String
+    ): Response<Any>
+
 }
 
 // ==========================================
@@ -153,7 +167,7 @@ data class SolicitudDetalladaDto(
     val justificacion: String?,
     @SerializedName("fecha_solicitud") val fecha: String,
     val detalles: List<DetalleProductoDto>, // La lista de productos
-    @SerializedName("usuario_solicitante") val usuario: UsuarioDto?
+    @SerializedName("usuario_solicitante") val usuario: UserDto?
 )
 
 data class DetalleProductoDto(
@@ -167,3 +181,6 @@ data class UpdateEstadoRequest(
     val estatus: String, // "aprobada" o "rechazada"
     @SerializedName("motivo_rechazo") val motivoRechazo: String? = null
 )
+
+// Modelo de datos al final
+data class FcmTokenRequest(val fcm_token: String)

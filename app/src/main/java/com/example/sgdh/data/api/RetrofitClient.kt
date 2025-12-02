@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 object RetrofitClient {
 
     //  IP del tu servidor
-    const val BASE_URL = "http://192.168.1.84/api/"
+    const val BASE_URL = "https://sgdh.systems/api/"
 
     // Variable para guardar la instancia única
     @Volatile

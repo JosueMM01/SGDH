@@ -66,7 +66,7 @@ class DetalleSolicitudActivity : AppCompatActivity() {
     private fun actualizarUI(data: SolicitudDetalladaDto) {
         binding.tvFolio.text = "SOL-#${data.id}"
         binding.tvFecha.text = "Fecha: ${if (data.fecha.length >= 10) data.fecha.substring(0, 10) else data.fecha}"
-        binding.tvSolicitante.text = "Solicitado por: ${data.usuario?.nombre ?: "Desconocido"}"
+        binding.tvSolicitante.text = "Solicitado por: ${data.usuario?.name ?: "Desconocido"}"
         binding.tvJustificacion.text = data.justificacion ?: "Sin justificación"
 
         binding.chipEstatus.text = data.estatus.label

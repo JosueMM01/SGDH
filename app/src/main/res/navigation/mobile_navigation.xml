@@ -12,14 +12,15 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.sgdh.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_solicitudes"
+        android:name="com.example.sgdh.ui.solicitudes.SolicitudesFragment"
+        android:label="@string/menu_solicitudes"
+        tools:layout="@layout/fragment_solicitudes" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.sgdh.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_bitacoras"
+        android:name="com.example.sgdh.ui.bitacoras.BitacorasFragment"
+        android:label="@string/menu_bitacoras"
+        tools:layout="@layout/fragment_bitacoras" />
+
 </navigation>

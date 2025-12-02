@@ -7,12 +7,7 @@
     <string name="nav_header_title">SGDH Móvil</string>
     <string name="nav_header_subtitle">usuario@sgdh.com</string>
     <string name="nav_header_desc">Encabezado de navegación</string>
-    <string name="action_settings">Ajustes</string>
-
     <string name="menu_home">Inicio</string>
-    <string name="menu_gallery">Galería</string>
-    <string name="menu_slideshow">Presentación</string>
-
     <string name="login_title">Bienvenido</string>
     <string name="login_subtitle">Ingresa tus credenciales para acceder</string>
     <string name="label_email">Correo Institucional</string>
@@ -21,7 +16,8 @@
     <string name="login">Iniciar Sesión</string>
     <string name="login_google">Continuar con Google</string>
     <string name="or">o</string>
-
+    <string name="menu_solicitudes">Solicitudes</string>
+    <string name="menu_bitacoras">Bitácoras</string>
     <string name="biometric_title">¡Hola de nuevo!</string>
     <string name="biometric_content_desc">Icono de Huella</string>
     <string name="biometric_hint">Toca el icono para validar tu huella</string>

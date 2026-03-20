@@ -25,7 +25,7 @@ Esta es una aplicación para Android que forma parte del sistema SGDH. La aplica
 
 1.  **Clonar el repositorio:**
     ```bash
-    git clone <URL_DEL_REPOSITORIO>
+    git clone https://github.com/JosueMM01/SGDH.git
     ```
 
 2.  **Abrir en Android Studio:**
